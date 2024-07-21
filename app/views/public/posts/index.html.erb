@@ -1,0 +1,47 @@
+<div class="container px-5 px-sm-0">
+  <%# if @post.errors.any? %>
+    <h3><%#= @post.errors.count %>error prohibited this obj from being saved:</h3>
+      <ul>
+        <%# @post.errors.full_messages.each do |message| %>
+      <li><%#= message %></li>
+      <%# end %>
+      </ul>
+    <%# end %>
+  <div class="row">
+
+    <%= render 'public/users/share', posts: @posts, users: :@users, post: @post_new %>
+
+    <div class="col-md-8 offset-md-1">
+      <h2>Posts</h2>
+      <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <% @posts.each do |post|%>
+        <tbody>
+          <tr>
+            <td>
+              <%= link_to  user_path(post.user_id) do %>
+              <%= image_tag post.user.get_profile_image(80,80) %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to post_path(post.id) do %>
+              <%= post.title %>
+              <% end %>
+            </td>
+            <td>
+              <%= post.caption %>
+            </td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
