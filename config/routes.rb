@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'groups/index'
   devise_for :admin, skip: [:registrations, :password], controllers: {
     sessions: 'admin/sessions'
   }
@@ -7,6 +8,8 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'dashboards', to: 'dashboards#index'
     resources :users, only: [:destroy]
+    get 'post_comments', to: 'post_comments#index'
+    resources :post_comments, only: [:destroy]
   end
   
   
@@ -18,8 +21,13 @@ Rails.application.routes.draw do
     resources :posts, only: [:new, :create, :index, :show, :destroy] do
       #resource :favorites, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
+      
     end
     resources :users, only: [:index, :show, :edit, :update]
+    resources :groups, only: [:new, :index, :show, :create, :edit, :update] do
+    # group_users(中間テーブルをネストさせる)
+      resource :group_users, only: [:create, :destroy]
+    end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
