@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!, except: [:top], unless: :admin_controller?
-before_action :configure_authentication
+  before_action :configure_authentication
+  before_action :configure_permitted_parameters, if: :devise_controller?
  
   private
  
@@ -18,5 +19,11 @@ before_action :configure_authentication
  
   def action_is_public?
     controller_name == 'homes' && action_name == 'top'
+  end
+  
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :introduction, :email])
   end
 end

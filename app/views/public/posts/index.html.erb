@@ -1,15 +1,8 @@
 <div class="container px-5 px-sm-0">
-  <%# if @post.errors.any? %>
-    <h3><%#= @post.errors.count %>error prohibited this obj from being saved:</h3>
-      <ul>
-        <%# @post.errors.full_messages.each do |message| %>
-      <li><%#= message %></li>
-      <%# end %>
-      </ul>
-    <%# end %>
+  
   <div class="row">
 
-    <%= render 'public/users/share', posts: @posts, users: :@users, post: @post_new %>
+    <%= render 'public/users/share', posts: @posts, users: :@users, user: :@user, post: @post_new %>
 
     <div class="col-md-8 offset-md-1">
       <h2>Posts</h2>
