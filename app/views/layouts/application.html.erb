@@ -25,6 +25,8 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
               
+              
+              
               <% if user_signed_in? %>
               <li class="nav-item">
                 <%= link_to user_path(current_user), class: 'nav-link text-light' do %>
@@ -72,6 +74,11 @@
           </div>
         </div>
       </nav>
+      <div class="text-center">
+        <% if user_signed_in? %>
+          <%= render 'layouts/search' %>
+        <% end %>
+      </div>
     </header>
     <%= yield %>
   </body>

@@ -1,5 +1,5 @@
 class Public::PostsController < ApplicationController
-  before_action :is_matching_login_user, only: [:edit, :update]
+  
   def new
     @post = Post.new
   end
@@ -9,7 +9,7 @@ class Public::PostsController < ApplicationController
     @post.user_id = current_user.id
     if @post.save
       flash[:notice] = "You have created book successfully."
-      redirect_to book_path(@post.id)
+      redirect_to post_path(@post.id)
     else
       @user = current_user
       @posts = Post.all

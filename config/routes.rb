@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   scope module: :public do
     devise_for :users
     root to: 'homes#top'
-    get "search" => "searches#search"
+    get '/search', to: 'searches#search'
     get 'homes/about', to: 'homes#about', as: :about
     resources :posts, only: [:new, :create, :index, :show, :destroy] do
       #resource :favorites, only: [:create, :destroy]
