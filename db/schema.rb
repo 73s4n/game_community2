@@ -54,10 +54,10 @@ ActiveRecord::Schema.define(version: 2024_08_30_101043) do
 
   create_table "group_users", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "group_id"
+    t.integer "group__id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["group_id"], name: "index_group_users_on_group_id"
+    t.index ["group__id"], name: "index_group_users_on_group__id"
     t.index ["user_id"], name: "index_group_users_on_user_id"
   end
 
@@ -101,6 +101,6 @@ ActiveRecord::Schema.define(version: 2024_08_30_101043) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "group_users", "groups"
+  add_foreign_key "group_users", "group_s"
   add_foreign_key "group_users", "users"
 end
